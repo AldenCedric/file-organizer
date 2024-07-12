@@ -24,3 +24,13 @@ def checkFile(target_dir):
             files.append(i)
 
     return{"folders": folders, "files": files}
+
+# check extension name
+def checkExt(target_dir):
+    ext_list = []
+    files_list = checkFile(target_dir)["files"]
+    for i in files_list:
+        ext_list.append(i.split('.')[-1])
+
+    filtered_ext = list(dict.fromkeys(ext_list))
+    return filtered_ext
