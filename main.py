@@ -34,3 +34,13 @@ def checkExt(target_dir):
 
     filtered_ext = list(dict.fromkeys(ext_list))
     return filtered_ext
+
+# create directories
+def createDirectories(target_dir):
+    for i in checkExt(target_dir):
+        try:
+            mkdir(path.join(target_dir, i))
+            print(f"Folder {i} Created")
+        except:
+            print(f"Folder {i} Exist")
+            
