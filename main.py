@@ -43,4 +43,27 @@ def createDirectories(target_dir):
             print(f"Folder {i} Created")
         except:
             print(f"Folder {i} Exist")
-            
+
+# move files to corresponding directories
+def moveFilesToDir(target_dir):
+    file_list = checkFile(target_dir)["files"]
+    if file_list:
+        try:
+            for i in range(len(file_list)):
+                ext_name = file_list[i].split('.')[-1]
+                source = path.join(target_dir, file_list[i])
+                target = path.join(target_dir, ext_name)
+                shutil.move(source, target)
+                print(f"file {file_list[i]} moved to {ext_name}")
+        except Exception as e:
+            print("Error Moving Files: ", e)
+            print("File Organization Successful!")
+    else:
+        print("Files Organized")
+
+def main(target_dir):
+    createDirectories(target_dir)
+    moveFilesToDir(target_dir)
+
+if __name__ == "__main__":
+    main(TARGET_DIR)
